@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+# This model initially had no columns defined. If you add columns to the
+# model remove the '{}' from the fixture names and add the columns immediately
+# below each fixture, per the syntax in the comments below
+#
+one:
+  name: "Ruby School"
+  start_date: <%= DateTime.now %>
+  end_date: <%= 6.weeks.from_now %>
+  max_students: 20
+# column: value
+#
+two:
+  name: "Tomorrowland"
+  start_date: <%= DateTime.now %>
+  end_date: <%= 3.weeks.from_now %>
+  max_students: 40
+# column: value
