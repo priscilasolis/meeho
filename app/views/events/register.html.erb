@@ -1,0 +1,28 @@
+<h1>Register to <%= @event.name %></h1>
+
+<%= notice %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Email</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% unless @users_of_event == nil  %>
+        <% @users_of_event.each do |user| %>
+              <tr>
+                <td><%= user.email %></td>
+              </tr>
+        <% end %>
+    <% end %>
+  </tbody>
+</table>
+
+
+<%= form_tag controller: "events", action: "register_user", method: :post do %>
+  <%= label_tag "Email" %>
+  <%= text_field_tag :email %>
+
+  <%= submit_tag "Registrar usuario" %>
+<% end %>

@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-  before_action :set_event, only: [:show, :edit, :update, :destroy]
+  before_action :set_event, only: [:show, :edit, :update, :destroy, :register]
 
   # GET /events
   # GET /events.json
@@ -59,6 +59,30 @@ class EventsController < ApplicationController
       format.html { redirect_to events_url, notice: 'Event was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def register
+    @users_of_event = @event.users
+  end
+
+  def register_user
+    @event = Event.find(params[:id])
+    email = params[:email]
+    user = User.where(email: email).take
+
+    respond_to do |format|
+      unless user.nil?
+        if @event.users << user
+          format.html { redirect_to register_to_event_path(@event), notice: 'User was successfully registered to event.' }
+        else
+          format.html { redirect_to register_to_event_path(@event), notice: "User couldn't be registered." }
+        end
+      else
+        format.html { redirect_to register_to_event_path(@event), notice: "User does not exist." }
+      end
+    end
+
+    # redirect_to register_to_event_path(@event)
   end
 
   private
